@@ -23,8 +23,6 @@ inputBox.addEventListener('keydown', (e)=>{
 
 async function checkweather(city){
 
-
-    
     const api_key = "c38a1b50c374733716afddf3be93fb80";
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${api_key}`;
 
@@ -32,6 +30,7 @@ async function checkweather(city){
 
 
     const location = inputBox.value.trim();    
+    locationTitle.innerHTML = `You searched for: <span>${location}</span>`;
     locationTitle.innerHTML = `You searched for: <span>${location}</span>`;
 
     
@@ -75,6 +74,12 @@ async function checkweather(city){
 
 
 searchBtn.addEventListener('click', ()=> {
+     const searchInput = inputBox.value.trim();
+    if( !searchInput){
+        locationTitle.innerHTML = `📝 Write your city name to see the weather.`;
+        return
+    }
     checkweather(inputBox.value);
+   
 });
 
